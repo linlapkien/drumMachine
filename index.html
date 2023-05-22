@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Drum Machine in Free Code Camp</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="container" id="drum-machine">
+      <h1 class="text-center">Drum Machine in free code camp</h1>
+      <div>
+        <h1 class="text-center" id="display">Display</h1>
+      </div>
+      <div id="display"></div>
+      <button
+        class="drum-pad btn btn-block btn-primary"
+        id="drum-0"
+        onclick="play()"
+      >
+        Q
+        <audio
+          src="https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"
+          class="clip"
+          id="Q"
+        ></audio>
+      </button>
+      <button
+        class="drum-pad btn btn-block btn-primary"
+        id="drum-1"
+        onclick="play()"
+      >
+        W
+        <audio
+          src="https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3"
+          class="clip"
+          id="W"
+        ></audio>
+      </button>
+      <button
+        class="drum-pad btn btn-block btn-primary"
+        id="drum-2"
+        onclick="play()"
+      >
+        E
+        <audio
+          src="https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3"
+          class="clip"
+          id="E"
+        ></audio>
+      </button>
+      <button
+        class="drum-pad btn btn-block btn-primary"
+        id="drum-3"
+        onclick="play()"
+      >
+        A
+        <audio
+          src="https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3"
+          class="clip"
+          id="A"
+        ></audio>
+      </button>
+      <button
+        class="drum-pad btn btn-block btn-primary"
+        id="drum-4"
+        onclick="play()"
+      >
+        S
+        <audio
+          src="https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3"
+          class="clip"
+          id="S"
+        ></audio>
+      </button>
+      <button
+        class="drum-pad btn btn-block btn-primary"
+        id="drum-5"
+        onclick="play()"
+      >
+        D
+        <audio
+          src="https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3"
+          class="clip"
+          id="D"
+        ></audio>
+      </button>
+      <button
+        class="drum-pad btn btn-block btn-primary"
+        id="drum-6"
+        onclick="play()"
+      >
+        Z
+        <audio
+          src="https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3"
+          class="clip"
+          id="Z"
+        ></audio>
+      </button>
+      <button
+        class="drum-pad btn btn-block btn-primary"
+        id="drum-7"
+        onclick="play()"
+      >
+        X
+        <audio
+          src="https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3"
+          class="clip"
+          id="X"
+        ></audio>
+      </button>
+      <button
+        class="drum-pad btn btn-block btn-primary"
+        id="drum-8"
+        onclick="play()"
+      >
+        C
+        <audio
+          src="https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3"
+          class="clip"
+          id="C"
+        ></audio>
+      </button>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const drumPadDescription = [
+        {
+          key: 'Q',
+          value: 'Heater 1',
+        },
+        {
+          key: 'W',
+          value: 'Heater 2',
+        },
+        {
+          key: 'E',
+          value: 'Heater 3',
+        },
+        {
+          key: 'A',
+          value: 'Heater 4',
+        },
+        {
+          key: 'S',
+          value: 'Clap',
+        },
+        {
+          key: 'D',
+          value: 'Open HH',
+        },
+        {
+          key: 'Z',
+          value: `Kick n' Hat`,
+        },
+        {
+          key: 'X',
+          value: `Kick`,
+        },
+        {
+          key: 'C',
+          value: `Closed HH`,
+        },
+      ];
+
+      // Audio play event, place the element value to innerText('display')
+      function play() {
+        var audioIDElement = event.target
+          .querySelector('audio')
+          .getAttribute('id');
+        var audio = document.getElementById(`${audioIDElement}`);
+        //console.log(audioIDElement); //Test
+        var description = drumPadDescription.find(
+          (item) => item.key === audioIDElement
+        )?.value; // Replace with your own logic to get the description based on the ID
+        console.log(description);
+        var displayElement = document.getElementById('display');
+        displayElement.innerText = description;
+        //console.log(audio); //Test audio
+        audio.play();
+      }
+
+      // Keyup Event, press Keyboard will trigger the button
+      document.addEventListener('keyup', function (event) {
+        let char = String.fromCharCode(event.which).toUpperCase();
+        if (/[ASDZXCQWE]/i.test(char)) {
+          // Do something
+          var index = drumPadDescription.findIndex((item) => item.key === char);
+          //console.log(index); //Test Index
+          document.getElementById(`drum-${index}`).click();
+        }
+      });
+    </script>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+  </body>
+</html>
